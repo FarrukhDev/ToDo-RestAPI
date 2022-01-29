@@ -3,21 +3,21 @@ from django.shortcuts import render
 from rest_framework import status
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.filters import OrderingFilter, SearchFilter
-from rest_framework.generics import ListAPIView, CreateAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView, ListCreateAPIView,RetrieveUpdateDestroyAPIView
 from blog.serializer import TodoSerializer
 from blog.models import Todo
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 
-class TodoListApiView(ListAPIView):
+class TodoListApiView(ListCreateAPIView):
     queryset = Todo.objects.all()
     serializer_class = TodoSerializer
     filter_backends = [OrderingFilter, SearchFilter]
     ordering_fields = ["title"]
     search_fields = ["title", "description"]
-    authentication_classes = [TokenAuthentication,]
-    permission_classes = [IsAuthenticated,]
+    # authentication_classes = [TokenAuthentication,]
+    # permission_classes = [IsAuthenticated,]
 class ToDoCreateApiView(CreateAPIView):
     queryset = Todo.objects.all()
     serializer_class = TodoSerializer
@@ -29,3 +29,7 @@ class ToDoCreateApiView(CreateAPIView):
             serializer.save(user=self.request.user)
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class RetriveApiVIEW(RetrieveUpdateDestroyAPIView):
+    queryset = Todo.objects.all()
+    serializer_class = TodoSerializer
+

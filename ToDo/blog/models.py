@@ -6,7 +6,7 @@ class Todo(models.Model):
     description=models.TextField()
     status=models.CharField(max_length=5,choices=(('new','new'),('done','done')))
     #date=models.DateField(auto_now_add=True)
-    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    user=models.ForeignKey(User,on_delete=models.CASCADE,null=True)
     def __str__(self):
         return self.title
     def newga_ozgartir(self):
