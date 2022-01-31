@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-^p75toh%!wfvf5t!iax6n5a4ihgjd3x)+r4)vs3*e9ow1^v_(=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['your-staging-app.herokuapp.com', 'your-production-app.herokuapp.com']
 
 
 # Application definition
@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+#     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
     'blog',
@@ -170,7 +170,7 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
-ALLOWED_HOSTS = ['your-staging-app.herokuapp.com', 'your-production-app.herokuapp.com']
+
 DISABLE_COLLECTSTATIC=1
 
 django_heroku.settings(locals())
